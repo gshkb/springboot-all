@@ -19,7 +19,7 @@
 * ### 10.springboot整合Mycat()
 * ### 11.springboot整合shardingJDBC()
 * ### 12.springboot整合DUBBO()
-##WEB系列
+## WEB系列
 * ### 13.springboot整合FreeMarker()
 * ### 14.springboot整合Thymeleaf()
 * ### 15.springboot整合Velocity()
