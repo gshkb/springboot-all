@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd
+        ">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -21,22 +22,123 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jooq</artifactId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!--jooq相关jar-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jooq</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jooq</groupId>
+			<artifactId>jooq-meta</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jooq</groupId>
+			<artifactId>jooq-codegen</artifactId>
+		</dependency>
+		<!-- flyway相关包 -->
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<!--阿里数据库连接池 -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid-spring-boot-starter</artifactId>
+			<version>1.1.10</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.6</version>
+			<scope>test</scope>
+		</dependency>
+		<!--代码生成用-->
+		<dependency>
+			<groupId>org.jboss.forge.roaster</groupId>
+			<artifactId>roaster-api</artifactId>
+			<version>2.21.0.Final</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.jboss.forge.roaster/roaster-jdt -->
+		<dependency>
+			<groupId>org.jboss.forge.roaster</groupId>
+			<artifactId>roaster-jdt</artifactId>
+			<version>2.21.0.Final</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+			<!-- jooq插件配置 -->
+			<!--<plugin>
+				<groupId>org.jooq</groupId>
+				<artifactId>jooq-codegen-maven</artifactId>
+				<version>3.11.11</version>
+				<executions>
+					<execution>
+						<id>jooq-codegen</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+									   xsi:schemaLocation="http://www.jooq.org/xsd/jooq-codegen-3.11.0.xsd ">
+							<jdbc>
+								<driver>jdbc:mysql://ip:3306/test</driver>
+								<url>jdbc:mysql://ip:3306/test</url>
+								<user>root</user>
+								<password>Root@123</password>
+							</jdbc>
+							&lt;!&ndash; 自动生成代码的配置 &ndash;&gt;
+							<generator>
+								<database>
+									<name>org.jooq.meta.mysql.MySQLDatabase</name>
+									<includes>.*</includes>
+									&lt;!&ndash;不需要生成的表&ndash;&gt;
+									<excludes>schema_version|flyway_schema_history</excludes>
+									<dateAsTimestamp>true</dateAsTimestamp>
+									&lt;!&ndash; 连接的是数据库中jooq模式 &ndash;&gt;
+									<inputSchema>jooq</inputSchema>
+								</database>
+								<generate>
+									<deprecated>false</deprecated>
+									<instanceFields>true</instanceFields>
+									<pojos>true</pojos>
+								</generate>
+								<target>
+									&lt;!&ndash; 指定自动生成代码的位置 &ndash;&gt;
+									<packageName>cn.gshkb.jooq</packageName>
+									<directory>src/test/java</directory>
+								</target>
+							</generator>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>-->
 		</plugins>
 	</build>
 

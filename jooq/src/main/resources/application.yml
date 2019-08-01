@@ -5,9 +5,9 @@ spring:
     driverClassName: com.mysql.cj.jdbc.Driver
     druid:
       # 主库数据源
-      url: jdbc:mysql://ip:端口/数据库名?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
-      username: 用户
-      password: 密码
+      url: jdbc:mysql://ip:3306/test?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+      username: root
+      password: Root@123
       # 初始连接数
       initial-size: 10
       # 最大连接池数量
@@ -38,11 +38,10 @@ spring:
         wall:
           config:
             multi-statement-allow: true
-# MyBatis
-mybatis:
-  # 搜索指定包别名
-  typeAliasesPackage:
-  # 配置mapper的扫描，找到所有的mapper.xml映射文件
-  mapperLocations: classpath*:mybatis/mapper/**/*Mapper.xml
-  # 加载全局的配置文件
-  configLocation: classpath:mybatis/mybatis-config.xml
+  flyway:
+    baseline-on-migrate: true
+    clean-disabled: true #禁止flyway执行清理
+    ignore-missing-migrations: true #忽略缺失的升级脚本验证
+    #升级脚本位置，可以多个，可以给每个环境使用不同位置
+    locations: classpath:db/migration,classpath:test/db/migration
+
