@@ -1,29 +1,37 @@
 package cn.gshkb.elasticsearch;
 
-import lombok.extern.slf4j.*;
-import org.apache.http.*;
-import org.elasticsearch.action.admin.indices.create.*;
-import org.elasticsearch.action.admin.indices.delete.*;
-import org.elasticsearch.action.admin.indices.get.*;
-import org.elasticsearch.action.index.*;
-import org.elasticsearch.action.search.*;
-import org.elasticsearch.action.support.*;
-import org.elasticsearch.action.support.master.*;
-import org.elasticsearch.client.*;
-import org.elasticsearch.common.settings.*;
-import org.elasticsearch.common.xcontent.*;
-import org.elasticsearch.common.xcontent.json.*;
-import org.elasticsearch.index.query.*;
-import org.elasticsearch.search.*;
-import org.elasticsearch.search.builder.*;
-import org.junit.*;
-import org.junit.runner.*;
-import org.springframework.boot.test.context.*;
-import org.springframework.context.annotation.*;
-import org.springframework.test.context.junit4.*;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.http.HttpHost;
+import org.elasticsearch.action.admin.indices.alias.Alias;
+import org.elasticsearch.action.admin.indices.create.CreateIndexRequest;
+import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
+import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
+import org.elasticsearch.action.admin.indices.get.GetIndexRequest;
+import org.elasticsearch.action.index.IndexRequest;
+import org.elasticsearch.action.index.IndexResponse;
+import org.elasticsearch.action.search.SearchRequest;
+import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.action.support.IndicesOptions;
+import org.elasticsearch.action.support.master.AcknowledgedResponse;
+import org.elasticsearch.client.RequestOptions;
+import org.elasticsearch.client.RestClient;
+import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.common.settings.Settings;
+import org.elasticsearch.common.xcontent.XContentBuilder;
+import org.elasticsearch.common.xcontent.json.JsonXContent;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.SearchHit;
+import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.test.context.junit4.SpringRunner;
 
-import java.io.*;
-import java.util.*;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -35,7 +43,7 @@ public class ElasticsearchApplicationTests {
 	private RestHighLevelClient client;
 
 	@Before
-	public void before(){
+	public void before() {
 		client = new RestHighLevelClient(
 				RestClient.builder(
 						new HttpHost("localhost", 9200, "http")));
@@ -109,7 +117,6 @@ public class ElasticsearchApplicationTests {
 	@Test
 	public void deleteIndex() throws IOException {
 
-
 		DeleteIndexRequest request = new DeleteIndexRequest("pybbs");
 		request.indicesOptions(IndicesOptions.LENIENT_EXPAND_OPEN);
 
@@ -150,13 +157,14 @@ public class ElasticsearchApplicationTests {
 
 	/**
 	 * es 6.5官方 测试用例
- 	 */
+	 */
 	@Test
 	public void createIndexTwitter() throws IOException {
 		CreateIndexRequest request = new CreateIndexRequest("twitter");
 		request.settings(Settings.builder()
 				.put("index.number_of_shards", 1)
-				.put("index.number_of_shards", 5));
+				.put("index.number_of_shards", 5)
+				.put("number_of_replicas", 2));
 
 		XContentBuilder mappingBuilder = JsonXContent.contentBuilder()
 				.startObject()
@@ -176,5 +184,20 @@ public class ElasticsearchApplicationTests {
 		request.mapping("topic", mappingBuilder);
 	}
 
+	@Test
+	public void createIndexByAli() throws IOException {
+		CreateIndexRequest request = new CreateIndexRequest("test");
+		Alias              alias   = new Alias("term");
+		alias.filter("\"term\" : {\"user\" : \"kimchy\" }");
+		alias.routing("kimchy");
+		request.alias(alias);
 
+	}
+
+	@Test
+	public void createIndexByTempate() throws IOException {
+		CreateIndexRequest request = new CreateIndexRequest("test");
+		new CreateIndexRequest();
+
+	}
 }
