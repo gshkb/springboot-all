@@ -7,6 +7,7 @@ import org.redisson.api.RedissonRxClient;
 import org.redisson.config.Config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 /**
  * 配置文件
@@ -15,6 +16,7 @@ import org.springframework.context.annotation.Configuration;
  * @create 2019-09-07 17:23 v1.0
  **/
 @Configuration
+@Component
 public class RedisConifg {
 
 	@Bean
