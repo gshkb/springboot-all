@@ -3,11 +3,12 @@ package cn.gshkb.redisson.config;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
 import org.redisson.api.RedissonReactiveClient;
-import org.redisson.api.RedissonRxClient;
 import org.redisson.config.Config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
+
+//import org.redisson.api.RedissonRxClient;
 
 /**
  * 配置文件
@@ -38,8 +39,8 @@ public class RedisConifg {
 		return Redisson.createReactive(config());
 	}
 
-	@Bean
+	/*@Bean
 	public RedissonRxClient redissonRxClient() {
 		return Redisson.createRx(config());
-	}
+	}*/
 }
