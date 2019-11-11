@@ -1,10 +1,10 @@
 package cn.gshkb.elasticsearch.cotroller;
 
-import lombok.*;
-import lombok.extern.slf4j.*;
-import org.elasticsearch.client.*;
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.web.bind.annotation.*;
+import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
+import org.elasticsearch.client.RestClient;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author hkb
@@ -17,4 +17,8 @@ public class TestController {
 
 	@Autowired
 	private RestClient restClient;
+
+    public static void main(String[] args) {
+
+    }
 }

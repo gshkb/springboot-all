@@ -1,19 +1,19 @@
 package cn.gshkb.elasticsearch.conf;
 
-import org.apache.http.*;
+/*import org.apache.http.*;
 import org.elasticsearch.client.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.context.annotation.*;
 
-import java.security.*;
+import java.security.*;*/
 
 /**
  * @author hkb
  * @create 2019-08-02 19:53 v1.0
  **/
-@Configuration
+//@Configuration
 public class RestConfig {
-	@Bean
+	/*@Bean
 	@Qualifier("client")
 	public RestClient getClient() throws KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
 		// 如果有多个从节点可以持续在内部new多个HttpHost，参数1是ip,参数2是HTTP端口，参数3是通信协议
@@ -34,5 +34,5 @@ public class RestConfig {
 				RestClient.builder(
 						new HttpHost("localhost", 9200, "http")));
 
-	}
+	}*/
 }
