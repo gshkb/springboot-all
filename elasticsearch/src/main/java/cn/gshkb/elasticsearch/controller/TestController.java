@@ -1,4 +1,4 @@
-package cn.gshkb.elasticsearch.cotroller;
+package cn.gshkb.elasticsearch.controller;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -17,8 +17,4 @@ public class TestController {
 
 	@Autowired
 	private RestClient restClient;
-
-    public static void main(String[] args) {
-
-    }
 }
