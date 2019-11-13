@@ -1,6 +1,6 @@
 package cn.gshkb.redisson;
 
-import cn.gshkb.redisson.config.RedisConifg;
+/*import cn.gshkb.redisson.config.RedisConifg;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,9 +34,9 @@ public class RedissonApplicationTests {
 	public void contextLoads() {
 	}
 
-	/**
+	*//**
 	 * 获取 重入锁
-	 */
+	 *//*
 	@Test
 	public void getLock(){
 		RLock firstLock = redisClient.getLock("firstLock");
@@ -46,9 +46,9 @@ public class RedissonApplicationTests {
 
 	}
 
-	/**
+	*//**
 	 * 获取  bucket
-	 */
+	 *//*
 	@Test
 	public void getBucket(){
 		RBucket<Integer> bucket = redisClient.getBucket("anyObject");
@@ -62,9 +62,9 @@ public class RedissonApplicationTests {
 		System.out.println(bucket.get());
 	}
 
-	/**
+	*//**
 	 * 获取  bucket
-	 */
+	 *//*
 	@Test
 	public void getBuckets(){
 		RBuckets               buckets       = redisClient.getBuckets();
@@ -119,6 +119,6 @@ public class RedissonApplicationTests {
                 System.out.println("key:"+entry.getKey()+"..value:"+entry.getValue());
 		}
 	}
-}
+}*/
 
 
