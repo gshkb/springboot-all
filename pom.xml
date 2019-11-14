@@ -12,6 +12,7 @@
 	<artifactId>springboot-all</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>springboot-all</name>
+	<packaging>pom</packaging>
 	<description>springboot项目整合</description>
 
 	<properties>

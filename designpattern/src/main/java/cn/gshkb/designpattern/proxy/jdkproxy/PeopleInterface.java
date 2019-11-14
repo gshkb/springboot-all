@@ -5,5 +5,8 @@ package cn.gshkb.designpattern.proxy.jdkproxy;
  * @create 2019-11-13 17:39 v1.0
  **/
 public interface PeopleInterface {
-	public void say();
+
+    public void say(String say);
+
+    public void wc(String wc);
 }

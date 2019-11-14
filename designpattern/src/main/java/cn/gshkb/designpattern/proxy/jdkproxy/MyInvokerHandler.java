@@ -1,5 +1,7 @@
 package cn.gshkb.designpattern.proxy.jdkproxy;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
@@ -9,25 +11,25 @@ import java.lang.reflect.Method;
  * @author hkb
  * @create 2019-11-13 17:44 v1.0
  **/
-
+@Slf4j
 public class MyInvokerHandler implements InvocationHandler {
 
-	private Object people;
+    private Object proxy;
 
-	public MyInvokerHandler(PeopleInterface peopleInterface) {
-		this.people = peopleInterface;
+    public MyInvokerHandler(Object peopleInterface) {
+        this.proxy = peopleInterface;
 	}
 
 	@Override
-	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+    public Object invoke(Object ob, Method method, Object[] args) throws Throwable {
 		//调用目标方法
-		Object invoke = null;
-		try {
-			invoke = method.invoke(people, args);
-			System.out.println("invoke:" + invoke.toString());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return invoke;
-	}
+
+        log.info("运行增强的动态代理proxy{},method{},args{}", proxy, method, args);
+
+        return method.invoke(proxy, args);
+    }
+
+
+
+
 }
