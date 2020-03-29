@@ -1,6 +1,6 @@
 package cn.gshkb.elasticsearch.domain;
 
-import lombok.AllArgsConstructor;
+/*import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,4 +34,4 @@ public class Item {
 
     @Field(index = false, type = FieldType.Keyword)
     private String images; // 图片地址
-}
+}*/
