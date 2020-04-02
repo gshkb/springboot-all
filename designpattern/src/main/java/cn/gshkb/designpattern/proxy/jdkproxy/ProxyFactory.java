@@ -14,18 +14,18 @@ import java.lang.reflect.Proxy;
 @Slf4j
 public class ProxyFactory {
 
-    public static PeopleInterface Builder(Class classFile) {
+    public static IPeopleInterface Builder(Class classFile) {
 
-        PeopleInterface proxy = null;
+        IPeopleInterface proxy = null;
         try {
-            proxy = (PeopleInterface) classFile.newInstance();
-
+            proxy = (IPeopleInterface) classFile.newInstance();
         } catch (Exception e) {
             log.error("代理对象创建失败,{}", e);
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
+        log.info("我是代理工厂");
         MyInvokerHandler myInvokerHandler = new MyInvokerHandler(proxy);
-        return (PeopleInterface) Proxy.newProxyInstance(classFile.getClassLoader(), classFile.getInterfaces(), myInvokerHandler);
+        return (IPeopleInterface) Proxy.newProxyInstance(classFile.getClassLoader(), classFile.getInterfaces(), myInvokerHandler);
     }
 }

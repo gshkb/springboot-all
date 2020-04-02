@@ -1,5 +1,6 @@
 package cn.gshkb.designpattern.proxy.jdkproxy;
 
+import java.lang.annotation.Target;
 import java.lang.reflect.Proxy;
 
 /**
@@ -9,21 +10,29 @@ import java.lang.reflect.Proxy;
  * @create 2019-11-13 17:54 v1.0
  **/
 public class TestJdkProxy {
-    public static void main(String[] args) throws NoSuchMethodException, IllegalAccessException, InstantiationException {
+    public static void main(String[] args) throws Throwable {
 
-        PeopleInterface proxyTarget = ProxyTarget.class.newInstance();
+        testProxyObj();
 
-		MyInvokerHandler myInvokerHandler = new MyInvokerHandler(proxyTarget);
+        testProxyFactory();
 
-        PeopleInterface o = (PeopleInterface) Proxy.newProxyInstance(ProxyTarget.class.getClassLoader(), ProxyTarget.class.getInterfaces(), myInvokerHandler);
-        o.say("吃饭");
-        o.wc("wc");
-        //工厂模式调用
-		/*PeopleInterface builder = ProxyFactory.Builder(ProxyTarget.class);
-		builder.wc("wx");
-		builder.say("say");*/
+        testDynamicProxy();
+
+    }
 
 
-	}
+    private static void testProxyObj() {
+        ProxyObj proxyObj = new ProxyObj(new ProxyTarget());
+        proxyObj.say("测试静态代理");
+    }
 
+    private static void testProxyFactory() {
+        IPeopleInterface builder = ProxyFactory.Builder(ProxyTarget.class);
+        builder.say("测试工厂方法代理");
+    }
+
+    private static void testDynamicProxy() throws Throwable {
+        DynamicProxyObj proxyObj = new DynamicProxyObj();
+        proxyObj.say("测试动态代理");
+    }
 }
