@@ -7,10 +7,10 @@ public class TestDecorator {
         IMorrigan original = new Original();
         original.display();
 
-        IMorrigan succubus = new Succubus(original);
+        /*IMorrigan succubus = new Succubus(original);
         succubus.display();
 
         IMorrigan girl = new Girl(original);
-        girl.display();
+        girl.display();*/
     }
 }

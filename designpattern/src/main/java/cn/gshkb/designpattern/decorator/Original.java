@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import javax.swing.*;
 import java.awt.*;
+import java.net.URL;
 
 /**
  * 抽象的原身
@@ -26,7 +27,8 @@ public class Original extends JFrame implements IMorrigan {
     public void display() {
         log.info("我是原始人");
         this.setLayout(new FlowLayout());
-        ImageIcon imageIcon = new ImageIcon("src/resource/" + t);
+        Class<? extends Original> aClass = getClass();
+        ImageIcon imageIcon = new ImageIcon(t);
         JLabel l1 = new JLabel(imageIcon);
         this.add(l1);
         this.pack();
