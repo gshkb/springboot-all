@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("config")
 public class ConfigController {
 
-    @NacosValue(value = "${cn.gshkb.nacos.config:message}", autoRefreshed = true)
+    @NacosValue(value = "${message}", autoRefreshed = true)
     private String message;
 
     @GetMapping("/hello")
     public String get() {
-        return "hello" + message;
+        return "hello " + message;
     }
 }
