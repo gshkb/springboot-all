@@ -17,6 +17,7 @@ package cn.gshkb.sentinelserver1embedded.controller;
 
 
 import cn.gshkb.sentinelserver1embedded.service.DemoService;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,6 +32,7 @@ public class ClusterDemoController {
     @Autowired
     private DemoService service;
 
+    @SentinelResource(blockHandler = "sayHelloBlockHandler")
     @GetMapping("/hello/{name}")
     public String apiHello(@PathVariable String name) throws Exception {
         return service.sayHello(name);

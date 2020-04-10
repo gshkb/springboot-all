@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package cn.gshkb.sentinelserver1embedded.init;
 
 import cn.gshkb.sentinelserver1embedded.entity.ClusterGroupEntity;
@@ -41,9 +42,11 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+
 /**
  * @author Eric Zhao
  */
+
 public class DemoClusterInitFunc implements InitFunc {
     //APP1
     private static final String APP_NAME = AppNameUtil.getAppName();
@@ -195,7 +198,9 @@ public class DemoClusterInitFunc implements InitFunc {
         return Optional.empty();
     }
 
-    private boolean machineEqual(/*@Valid*/ ClusterGroupEntity group) {
+    private boolean machineEqual(
+            /*@Valid*/
+            ClusterGroupEntity group) {
         return getCurrentMachineId().equals(group.getMachineId());
     }
 
