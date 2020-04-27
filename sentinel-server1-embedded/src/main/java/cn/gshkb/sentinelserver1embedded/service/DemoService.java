@@ -25,7 +25,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class DemoService {
 
-    @SentinelResource(blockHandler = "sayHelloBlockHandler")
+    //@SentinelResource(blockHandler = "sayHelloBlockHandler")
     public String sayHello(String name) {
         return "Hello, " + name;
     }

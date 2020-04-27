@@ -32,7 +32,7 @@ public class ClusterDemoController {
     @Autowired
     private DemoService service;
 
-    @SentinelResource(blockHandler = "sayHelloBlockHandler")
+    //@SentinelResource(blockHandler = "sayHelloBlockHandler")
     @GetMapping("/hello/{name}")
     public String apiHello(@PathVariable String name) throws Exception {
         return service.sayHello(name);

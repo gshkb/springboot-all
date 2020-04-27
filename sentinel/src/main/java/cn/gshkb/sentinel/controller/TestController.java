@@ -18,7 +18,7 @@ public class TestController {
     @Autowired
     private TestService service;
 
-    @SentinelResource
+    //@SentinelResource
     @GetMapping(value = "/hello/{name}")
     public String apiHello(@PathVariable String name) {
         return service.sayHello(name);

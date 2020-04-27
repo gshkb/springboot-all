@@ -33,10 +33,7 @@
             <artifactId>sentinel-web-servlet</artifactId>
             <version>${project.version}</version>
         </dependency>-->
-        <dependency>
-            <groupId>com.alibaba.csp</groupId>
-            <artifactId>sentinel-transport-simple-http</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>com.alibaba.csp</groupId>
             <artifactId>sentinel-transport-simple-http</artifactId>

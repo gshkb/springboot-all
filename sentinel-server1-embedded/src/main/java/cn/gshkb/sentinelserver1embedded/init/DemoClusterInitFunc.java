@@ -68,7 +68,7 @@ public class DemoClusterInitFunc implements InitFunc {
         initDynamicRuleProperty();
 
         // Register token client related data source.
-        // Token client common config:
+        // Token client common config:·
         initClientConfigProperty();
         // Token client assign config (e.g. target token server) retrieved from assign map:
         initClientServerAssignProperty();
@@ -78,6 +78,7 @@ public class DemoClusterInitFunc implements InitFunc {
         registerClusterRuleSupplier();
         // Token server transport config extracted from assign map:
         initServerTransportConfigProperty();
+
 
         // Init cluster state property for extracting mode from cluster map data source.
         initStateProperty();
