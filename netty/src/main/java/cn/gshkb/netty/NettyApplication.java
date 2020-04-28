@@ -21,8 +21,6 @@ public class NettyApplication {
 		new Thread(()->{
 			new ImServer().run(port);
 		}).start();
-		
-
 	}
 
 }
