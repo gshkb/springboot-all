@@ -3,7 +3,31 @@
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
     <modules>
-        <module>sentinel-cluster</module>
+        <module>activemq</module>
+        <module>curator</module>
+		<module>dubbo-consumer</module>
+		<module>dubbo-provider</module>
+		<module>elasticsearch</module>
+		<module>io</module>
+		<module>jooq</module>
+		<module>jpa</module>
+		<module>kafka</module>
+		<module>mongdb</module>
+		<module>mybatis</module>
+		<module>mycat</module>
+		<module>myfilter</module>
+		<module>nacos</module>
+		<module>netty</module>
+		<module>rabbitmq</module>
+		<module>redis</module>
+		<module>redisson</module>
+        <module>rocketmq</module>
+		<module>sentinel</module>
+		<!--<module>sentinel-server1</module>-->
+		<module>sentinel-server1-embedded</module>
+		<module>shardingjdbc</module>
+		<module>solr</module>
+		<module>swagger</module>
     </modules>
     <parent>
 		<groupId>org.springframework.boot</groupId>

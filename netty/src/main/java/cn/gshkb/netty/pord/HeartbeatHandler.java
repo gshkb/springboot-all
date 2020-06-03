@@ -1,6 +1,7 @@
 package cn.gshkb.netty.pord;
 
-import com.sun.corba.se.impl.protocol.giopmsgheaders.MessageBase;
+
+import cn.gshkb.netty.protobuf.MessageBase;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
@@ -27,7 +28,8 @@ public class HeartbeatHandler extends ChannelInboundHandlerAdapter {
                 log.info("已经10s没有发送消息给服务端");
                 //向服务端送心跳包
                 //这里使用 protobuf定义的消息格式
-                MessageBase.Message heartbeat = new MessageBase.Message().toBuilder().setCmd(MessageBase.Message.CommandType.HEARTBEAT_REQUEST)
+                MessageBase.Message heartbeat =MessageBase.Message.getDefaultInstance().toBuilder()
+                        .setCmd(MessageBase.Message.CommandType.HEARTBEAT_REQUEST)
                         .setRequestId(UUID.randomUUID().toString())
                         .setContent("heartbeat").build();
                 //发送心跳消息，并在发送失败时关闭该连接
