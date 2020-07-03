@@ -28,7 +28,9 @@
 		<module>shardingjdbc</module>
 		<module>solr</module>
 		<module>swagger</module>
-    </modules>
+		<module>flink</module>
+		<module>untitled</module>
+	</modules>
     <parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
