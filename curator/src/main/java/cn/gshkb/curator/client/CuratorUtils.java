@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 public class CuratorUtils {
 
 
-    private static String address = "localhost:2181";
+    private static String address = "127.0.0.1:2181";
 
 
     public static void main(String[] args) {
@@ -93,11 +93,8 @@ public class CuratorUtils {
                                 e.printStackTrace();
 
                             }
-
                         }
-
                     }
-
                 }
 
             });

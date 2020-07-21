@@ -24,8 +24,7 @@ public class RedisConifg {
 	public Config config() {
 		Config config = new Config();
 		config.useSingleServer()
-				.setAddress("redis://101.37.125.181:7001")
-				.setPassword("redis123");
+				.setAddress("redis://127.0.0.1:7000");
 		return config;
 	}
 
