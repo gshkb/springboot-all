@@ -174,7 +174,7 @@ public class UaDemo {
         DataStream<Tuple3<String, String, Integer>> statsResult = detail.keyBy(new KeySelector<Tuple2<UMessage, Integer>, String>() {
             @Override
             public String getKey(Tuple2<UMessage, Integer> value) throws Exception {
-                return value.f0.getCreateTime().substring(0, 10);
+                return value.f0.getUid();
             }
         }).window(TumblingEventTimeWindows.of(Time.days(1), Time.hours(-8)))
 //               .trigger(ContinuousProcessingTimeTrigger.of(Time.seconds(10)))
@@ -190,8 +190,11 @@ public class UaDemo {
                     @Override
                     public void open(Configuration parameters) throws Exception {
                         super.open(parameters);
-                        StateTtlConfig ttlConfig = StateTtlConfig.newBuilder(org.apache.flink.api.common.time.Time.minutes(60 * 6)).setUpdateType(StateTtlConfig.UpdateType.OnCreateAndWrite).setStateVisibility(StateTtlConfig.StateVisibility.NeverReturnExpired).build();
-                        ValueStateDescriptor<BloomFilter<String>> boomFilterDescriptor = new ValueStateDescriptor<BloomFilter<String>>("boom_filter", TypeInformation.of(new TypeHint<BloomFilter<String>>() {
+                        StateTtlConfig ttlConfig = StateTtlConfig.newBuilder(org.apache.flink.api.common.time.Time.minutes(60 * 6))
+                                .setUpdateType(StateTtlConfig.UpdateType.OnCreateAndWrite)
+                                .setStateVisibility(StateTtlConfig.StateVisibility.NeverReturnExpired).build();
+                        ValueStateDescriptor<BloomFilter<String>> boomFilterDescriptor
+                                = new ValueStateDescriptor<BloomFilter<String>>("boom_filter", TypeInformation.of(new TypeHint<BloomFilter<String>>() {
                         }));
                         ValueStateDescriptor<Integer> pvDescriptor = new ValueStateDescriptor<Integer>("pv_count", Integer.class);
                         ValueStateDescriptor<Integer> uvDescriptor = new ValueStateDescriptor<Integer>("uv_count", Integer.class);
@@ -204,7 +207,8 @@ public class UaDemo {
                     }
 
                     @Override
-                    public void process(String key, Context context, Iterable<Tuple2<UMessage, Integer>> elements, Collector<Tuple3<String, String, Integer>> out) throws Exception {
+                    public void process(String key, Context context, Iterable<Tuple2<UMessage, Integer>> elements
+                            , Collector<Tuple3<String, String, Integer>> out) throws Exception {
                         Integer uv = uvCountState.value();
                         Integer pv = pvCountState.value();
                         BloomFilter<String> bloomFilter = boomFilterState.value();
