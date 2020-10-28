@@ -27,7 +27,8 @@
 		<module>swagger</module>
 		<module>flink</module>
 		<module>untitled</module>
-	</modules>
+        <module>pdf</module>
+    </modules>
     <parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>

@@ -3,9 +3,14 @@ package cn.gshkb.curator.client;
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
+import org.apache.curator.framework.api.GetChildrenBuilder;
+import org.apache.curator.framework.api.GetDataBuilder;
+import org.apache.curator.framework.api.RemoveWatchesBuilder;
+import org.apache.curator.framework.imps.GetChildrenBuilderImpl;
 import org.apache.curator.framework.recipes.locks.InterProcessMutex;
 import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.apache.zookeeper.CreateMode;
+import org.apache.zookeeper.data.Stat;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -18,7 +23,7 @@ public class CuratorUtils {
     private static String address = "127.0.0.1:2181";
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         //1、重试策略：初试时间为1s 重试3次
 
@@ -43,6 +48,7 @@ public class CuratorUtils {
 
         ExecutorService fixedThreadPool = Executors.newFixedThreadPool(5);
 
+        GetChildrenBuilderImpl children = (GetChildrenBuilderImpl) client.getChildren();
 
         for (int i = 0; i < 5; i++) {
 
@@ -102,4 +108,6 @@ public class CuratorUtils {
         }
 
     }
+
+
 }
